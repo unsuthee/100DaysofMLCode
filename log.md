@@ -4,3 +4,11 @@ I implemented a vanilla GANs and trained the model on MNIST dataset. I plotted t
 
 - [blog](https://sutheeblog.wordpress.com/2018/08/14/day-1-vanilla-gans/)
 - [code](https://github.com/unsuthee/100DaysofMLCode/tree/master/day1)
+
+# Day 2
+I studied Indepedent Component Analysis (ICA) because I like the idea of changing variable technique used for solving ICA. The idea of changing variable has also recently been used again in RealNVP and Normalizing Flows. It is a good idea to pick up the basic from ICA first before exploring these advance techniques.
+
+- [blog](https://sutheeblog.wordpress.com/2018/08/17/day-2-independent-component-analysis-ica/)
+
+# Day 3
+I plan to implement some algorithms to solve ICA and compare my algorithms with the skLearn's fastICA. I might apply ICA on MNIST and toy dataset.
