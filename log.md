@@ -11,4 +11,7 @@ I studied Indepedent Component Analysis (ICA) because I like the idea of changin
 - [blog](https://sutheeblog.wordpress.com/2018/08/17/day-2-independent-component-analysis-ica/)
 
 # Day 3
-I plan to implement some algorithms to solve ICA and compare my algorithms with the skLearn's fastICA. I might apply ICA on MNIST and toy dataset.
+I plan to implement some algorithms to solve ICA and compare my algorithms with the skLearn's fastICA. It turns out to be very tricky to implement ICA based on the maximum likelihood approach. I encountered many numerical instability, most comes from computing the log of determinant. 
+
+- [blog](https://sutheeblog.wordpress.com/2018/08/19/day-3-ica-with-gradient-ascent/)
+- [code](https://github.com/unsuthee/100DaysofMLCode/blob/master/day2/PlayWithICA.ipynb)
