@@ -51,7 +51,7 @@ class NADE(nn.Module):
                 t = x[:i].unsqueeze(0)
                 h = F.sigmoid(torch.mm(t, self.W[:i]) + self.C)
                 prob_mat[i] = F.sigmoid(torch.mv(h, self.W[i]) + self.B[i])
-            loss.append(F.binary_cross_entropy(prob_mat, binary_x))
+            loss.append(F.binary_cross_entropy(prob_mat, binary_x, reduction='sum'))
         total_loss = torch.stack(loss, dim=0).mean()
         return total_loss
     
@@ -74,8 +74,8 @@ model = model.cuda()
 #optimizer = optim.SGD(model.parameters(), lr=0.0001, momentum=0.9)
 optimizer = optim.Adam(model.parameters(), lr=0.0001)
 
-i = 0
 for epoch in range(10):
+    i = 0
     for batch_x, batch_y in tqdm(train_loader):
         batch_x = batch_x.view(-1, 784)
 
@@ -86,7 +86,7 @@ for epoch in range(10):
 
         optimizer.step()
 
-        torch.save(model.state_dict(), 'NADE.ip.model') 
+        #torch.save(model.state_dict(), 'NADE.ip.model') 
 
         i+=1
         if i % 50 == 0:
