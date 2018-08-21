@@ -48,10 +48,10 @@ class NADE(nn.Module):
             prob_mat = Variable(torch.empty(self.num_feas).type(torch.cuda.FloatTensor))
             prob_mat[0] = F.sigmoid(torch.mv(self.C, self.W[0]) + self.B[0])
             for i in range(1, self.num_feas):
-                t = x[:i].unsqueeze(0)
+                t = binary_x[:i].unsqueeze(0)
                 h = F.sigmoid(torch.mm(t, self.W[:i]) + self.C)
                 prob_mat[i] = F.sigmoid(torch.mv(h, self.W[i]) + self.B[i])
-            loss.append(F.binary_cross_entropy(prob_mat, binary_x, reduction='sum'))
+            loss.append(F.binary_cross_entropy(prob_mat, binary_x, size_average=False))
         total_loss = torch.stack(loss, dim=0).mean()
         return total_loss
     
@@ -68,7 +68,7 @@ class NADE(nn.Module):
         
 ###############################################################################################
 
-model = NADE(784, 32)
+model = NADE(784, 128)
 model = model.cuda()
 
 #optimizer = optim.SGD(model.parameters(), lr=0.0001, momentum=0.9)
