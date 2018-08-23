@@ -11,6 +11,7 @@ This is my commitment to the 100 days ML coding chellenge proposed by Siraj Rava
 - Day 5 (MADE)
 
 ## Variational Autoencoder
+- Day 7 (Conditional VAE)
 
 ## Invertible Models
 - Day 2, 3 (ICA)
