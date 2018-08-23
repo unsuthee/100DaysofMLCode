@@ -14,3 +14,5 @@ This is my commitment to the 100 days ML coding chellenge proposed by Siraj Rava
 
 ## Invertible Models
 - Day 2, 3 (ICA)
+
+## Tips, Tools, MISC
