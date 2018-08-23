@@ -15,3 +15,20 @@ I plan to implement some algorithms to solve ICA and compare my algorithms with 
 
 - [blog](https://sutheeblog.wordpress.com/2018/08/19/day-3-ica-with-gradient-ascent/)
 - [code](https://github.com/unsuthee/100DaysofMLCode/blob/master/day2/PlayWithICA.ipynb)
+
+# Day 4
+I worked on Neural Autoregressive model and trained the model on MNIST dataset. I sampled a few images from the learned distribution but the results are not good at all.
+
+- [blog](https://sutheeblog.wordpress.com/2018/08/20/day-4-nade-revisit/)
+- [code](https://github.com/unsuthee/100DaysofMLCode/tree/master/day4)
+
+# Day 5
+I worked on Mask Autoencoder which is an improvement of NADE model. I used the pyTorch implementation by Karpathy and be able to generate some MNIST digits. The results are not good but slightly better than NADE.
+
+- [blog](https://sutheeblog.wordpress.com/2018/08/22/day-5-made-mask-autoencoder/)
+
+# Day 6
+I worked on DCGAN. This model uses deconvolutional layers as a generator and convolutional layers as a discriminator. I implemented DCGAN and be able to generate some MNIST digits. The results look good and are much better than vanilla GAN.
+
+- [blog](https://sutheeblog.wordpress.com/2018/08/22/day-6-dcgan/)
+- [code](https://github.com/unsuthee/100DaysofMLCode/blob/master/day6/run_DCGAN.py)
