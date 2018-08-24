@@ -41,4 +41,4 @@ I worked on Conditional VAE. I use convolution and deconvolution as part of the 
 
 # Day 8
 I trained CVAE and DCGAN on FashionMNIST and EMNIST. The results are not good. 
-- [blog] https://sutheeblog.wordpress.com/2018/08/24/day-8-move-away-from-mnist-datasets/
+- [blog](https://sutheeblog.wordpress.com/2018/08/24/day-8-move-away-from-mnist-datasets/)
