@@ -38,3 +38,7 @@ I worked on Conditional VAE. I use convolution and deconvolution as part of the 
 
 - [blog](https://sutheeblog.wordpress.com/2018/08/23/day-7-conditional-vae/)
 - [code](https://github.com/unsuthee/100DaysofMLCode/tree/master/day7)
+
+# Day 8
+I trained CVAE and DCGAN on FashionMNIST and EMNIST. The results are not good. 
+- [blog] https://sutheeblog.wordpress.com/2018/08/24/day-8-move-away-from-mnist-datasets/
