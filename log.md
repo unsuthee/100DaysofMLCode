@@ -32,3 +32,9 @@ I worked on DCGAN. This model uses deconvolutional layers as a generator and con
 
 - [blog](https://sutheeblog.wordpress.com/2018/08/22/day-6-dcgan/)
 - [code](https://github.com/unsuthee/100DaysofMLCode/blob/master/day6/run_DCGAN.py)
+
+# Day 7
+I worked on Conditional VAE. I use convolution and deconvolution as part of the encoder and decoder. After applying the KL annealing, the generated images are reasonably good. 
+
+- [blog](https://sutheeblog.wordpress.com/2018/08/23/day-7-conditional-vae/)
+- [code](https://github.com/unsuthee/100DaysofMLCode/tree/master/day7)
