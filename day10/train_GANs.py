@@ -26,7 +26,7 @@ elif dataset == 'MNIST':
     train_set = datasets.MNIST('../datasets/mnist', train=True, download=True, transform=trans)
     nc = 1
     
-batch_size = 64
+batch_size = 128
 
 train_loader = torch.utils.data.DataLoader(
                  dataset=train_set,
@@ -45,7 +45,7 @@ def weight_init(m):
         m.weight.data.normal_(0.0, 0.02)
         m.bias.data.zero_()
     elif isinstance(m, nn.BatchNorm1d):
-        m.weight.data.normal_(1.0, 0.02)
+        m.weight.data.normal_(0.0, 0.02)
         m.bias.data.zero_()
         
 class Generator(nn.Module):
@@ -105,6 +105,12 @@ def one_hot(label_batch, num_classes):
     yb_onehot = Variable(yb_onehot)
     return yb_onehot
 
+def one_hot2(label_batch, num_classes):
+    label_batch = torch.ones(label_batch.size()).type(torch.LongTensor)
+    yb_onehot = torch.eye(num_classes)[label_batch-1]
+    yb_onehot = Variable(yb_onehot)
+    return yb_onehot
+
 class Discriminator(nn.Module):
     def __init__(self, num_latent, num_classes):
         super(Discriminator, self).__init__()
@@ -144,8 +150,9 @@ D.apply(weight_init)
 G = Generator(num_latent, num_classes).to(device)
 G.apply(weight_init)
 
-D_optimizer = optim.SGD(D.parameters(), lr=0.0001, momentum=0.9)
-G_optimizer = optim.Adam(G.parameters(), lr=0.0001)
+#D_optimizer = optim.SGD(D.parameters(), lr=0.0001, momentum=0.9)
+D_optimizer = optim.Adam(D.parameters(), lr=0.0001, betas=(0.5, 0.999))
+G_optimizer = optim.Adam(G.parameters(), lr=0.0001, betas=(0.5, 0.999))
 
 loss = nn.BCELoss()    
 
@@ -190,7 +197,7 @@ from pathlib import Path
 home = str(Path.home())
 
 num_test_samples = 24
-test_noise = noise(num_test_samples, nz)
+test_noise = noise(num_test_samples, num_latent)
 
 import numpy as np
 num_batches = len(train_loader)
@@ -199,29 +206,42 @@ num_batches = len(train_loader)
 with open('logs/loss.log', 'w') as log_fn:
     
     log_fn.write('epoch,d_error,g_error,n_batch,num_batches\n')
-    
+        
     # Total number of epochs to train
     num_epochs = 500
-    for epoch in range(num_epochs):
+    for epoch in range(num_epochs+1):
+        
+        if (epoch+1) == 30:
+            G_optimizer.param_groups[0]['lr'] /= 10
+            D_optimizer.param_groups[0]['lr'] /= 10
+            print("learning rate change!")
+
+        if (epoch+1) == 40:
+            G_optimizer.param_groups[0]['lr'] /= 10
+            D_optimizer.param_groups[0]['lr'] /= 10
+            print("learning rate change!")
+        
         for n_batch, (real_batch, label_batch) in enumerate(train_loader):
             N = real_batch.size(0)
             label_data = one_hot(label_batch, num_classes).to(device)
+            label_data2 = one_hot2(label_batch, num_classes).to(device)
+            
             # 1. Train Discriminator
             real_data = Variable(real_batch)
             real_data = real_data.to(device)
 
             # Generate fake data and detach 
             # (so gradients are not calculated for generator)
-            fake_data = G(noise(N, nz), label_data).detach()
+            fake_data = G(noise(N, num_latent), label_data).detach()
             # Train D
             d_error, d_pred_real, d_pred_fake = \
-                  train_discriminator(D_optimizer, real_data, fake_data, label_data)
+                  train_discriminator(D_optimizer, real_data, fake_data, label_data2)
 
             # 2. Train Generator
             # Generate fake data
-            fake_data = G(noise(N, nz), label_data)
+            fake_data = G(noise(N, num_latent), label_data)
             # Train G
-            g_error = train_generator(G_optimizer, fake_data, label_data)
+            g_error = train_generator(G_optimizer, fake_data, label_data2)
             # Log batch error
             log_fn.write('{},{:.6f},{:.6f},{},{}\n'.format(epoch, d_error, g_error, n_batch, num_batches))
             
@@ -231,7 +251,7 @@ with open('logs/loss.log', 'w') as log_fn:
             #    test_images = test_images.data
                 
         print("epoch: {} d_error: {:.4f} g_error: {:.4f}".format(epoch, d_error, g_error))
-        if epoch % 5 == 0:
+        if epoch % 25 == 0:
             for n in range(num_classes):
                 class_onehot = n * torch.ones(test_noise.size(0)).type(torch.LongTensor)
                 class_onehot = torch.eye(num_classes)[class_onehot]
