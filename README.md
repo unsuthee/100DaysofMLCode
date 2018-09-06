@@ -56,3 +56,12 @@ I trained CVAE and DCGAN on FashionMNIST and EMNIST. The results are not good.
 I trained CVAE and DCGAN on CIFAR10. The results are okay after a few trial-and-errors on the model architecture.
 - [blog](https://sutheeblog.wordpress.com/2018/08/29/day-9-dcgan-and-cvae-on-cifar10/)
 
+# Day 10
+I worked on conditional GAN. My implemenation of CGAN did not work as I encountered the mode collapsing problem.
+- [blog](https://sutheeblog.wordpress.com/2018/09/05/day-10-mode-collapsing-on-my-cgan/)
+
+# Day 11
+My CGAN works now. I use a 2D one-hot representation to represent a class label. This idea works well.
+- [blog](https://sutheeblog.wordpress.com/2018/09/05/day-11-2d-one-hot-representation/)
+
+
