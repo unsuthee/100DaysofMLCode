@@ -70,6 +70,7 @@ I worked on a few techniques for handling a discrete output from the encoder of 
 
 # Day 13
 I completed my implemention of semi-supervised VAE. 
+- [blog](https://sutheeblog.wordpress.com/2018/09/13/day-13-implementation-of-semi-supervised-vae/)
 
 # Day 14
 Semi-supervised VAE with Gumbel-Softmax
