@@ -68,3 +68,11 @@ My CGAN works now. I use a 2D one-hot representation to represent a class label.
 I worked on a few techniques for handling a discrete output from the encoder of VAE or the generator of GANs. The first approach is to expand the expectation term in VAE. I rewrote semi-supervised VAE.
 - [blog](https://sutheeblog.wordpress.com/2018/09/12/day-12-handling-discrete-output-in-vae/)
 
+# Day 13
+I completed my implemention of semi-supervised VAE. 
+
+# Day 14
+Semi-supervised VAE with Gumbel-Softmax
+
+# Day 15
+Semi-supervised VAE with policy gradient method
