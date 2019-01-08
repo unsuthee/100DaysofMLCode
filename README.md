@@ -57,4 +57,5 @@ My focus is Deep Genenerative Model including:
 **Day 14**: Semi-supervised VAE with Gumbel-Softmax
 [blog](https://sutheeblog.wordpress.com/2018/09/14/day-14-cvae-with-gumbel-softmax/)
 
-**Day 15**: 
+**Day 15**: Semi-supervised VAE with Gumbel-Softmax (Continue)
+[blog](https://sutheeblog.wordpress.com/2018/09/18/day-15-cvae-with-gumbel-softmax-cont/)
